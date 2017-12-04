@@ -7,14 +7,16 @@ public class VRCubeInteractive : MonoBehaviour {
     public Renderer cube_renderer;
     public float speed = 10f;
 
-	// Use this for initialization
+    public bool isGrowing = true;
+    public float scaleValue = 0;
+
 	void Start () {
-		
 	}
 	
-	// Update is called once per frame
 	void Update () {
         transform.Rotate(0, speed * Time.deltaTime, 0);
+
+        transform.localScale += new Vector3(scaleValue, scaleValue, scaleValue);
     }
 
     public void PointerClick()
@@ -27,8 +29,14 @@ public class VRCubeInteractive : MonoBehaviour {
         speed = newSpeed;
     }
 
-    public void UpdateScale(float scaleSpeed)
+    public void ScaleUp (int newScale)
     {
-        transform.localScale += new Vector3(scaleSpeed * Time.deltaTime, scaleSpeed * Time.deltaTime, scaleSpeed * Time.deltaTime);
+        //can't use *= operator on Vector3
+        transform.localScale = new Vector3(transform.localScale.x * newScale, transform.localScale.y * newScale, transform.localScale.z * newScale);
+    }
+
+    public void ScaleDown (int newScale)
+    {
+        transform.localScale = new Vector3(transform.localScale.x / newScale, transform.localScale.y / newScale, transform.localScale.z / newScale);
     }
 }
