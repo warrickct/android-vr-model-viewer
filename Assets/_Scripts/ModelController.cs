@@ -15,9 +15,10 @@ public class ModelController : MonoBehaviour {
         instancedModel.transform.localPosition = Vector3.zero;
         instancedModel.transform.localRotation = Quaternion.identity;
 
-		Mesh modelMesh = instancedModel.GetComponent<Mesh>();
+		MeshFilter modelMesh = instancedModel.GetComponentInChildren(typeof(MeshFilter)) as MeshFilter;
+
 		MeshCollider modelMeshCollider = instancedModel.AddComponent<MeshCollider> ();
-		modelMeshCollider.sharedMesh = modelMesh;
+		modelMeshCollider.sharedMesh = modelMesh.mesh;
 
 		instancedModel.AddComponent<VRInteractable> ();
     }
