@@ -157,7 +157,9 @@ public abstract class GvrBasePointer : MonoBehaviour {
   /// Defaults to GvrControllerInput.ClickButtonDown, can be overridden to change the trigger.
   public virtual bool TriggerDown {
     get {
-      bool isTriggerDown = Input.GetMouseButtonDown(0);
+            //warrick edit: change from mousebuttondown(0) to buttondown("fire1");
+      //bool isTriggerDown = Input.GetMouseButtonDown(0);
+      bool isTriggerDown = Input.GetButtonDown("Fire1");
       return isTriggerDown || GvrControllerInput.ClickButtonDown;
     }
   }
@@ -178,8 +180,10 @@ public abstract class GvrBasePointer : MonoBehaviour {
   /// Defaults to GvrControllerInput.ClickButtonUp, can be overridden to change the trigger.
   public virtual bool TriggerUp {
     get {
-      bool isTriggerDown = Input.GetMouseButtonUp(0);
-      return isTriggerDown || GvrControllerInput.ClickButtonUp;
+            //warrick edit: changed from mousebutonup to GetButtonUp
+        //bool isTriggerDown = Input.GetMouseButtonUp(0);
+        bool isTriggerDown = Input.GetButtonUp("Fire1");
+        return isTriggerDown || GvrControllerInput.ClickButtonUp;
     }
   }
 
