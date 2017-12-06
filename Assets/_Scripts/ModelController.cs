@@ -15,7 +15,12 @@ public class ModelController : MonoBehaviour {
         instancedModel.transform.localPosition = Vector3.zero;
         instancedModel.transform.localRotation = Quaternion.identity;
 
+		//Object respond to clicks
 		instancedModel.AddComponent<VRInteractable> ();
+
+		Mesh modelMesh = instancedModel.GetComponentInChildren<MeshFilter> ().mesh;
+		MeshCollider modelMeshCollider = instancedModel.AddComponent<MeshCollider> ();
+		modelMeshCollider.sharedMesh = modelMesh;
     }
 
 	void SetSelectedObject(GameObject go){

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
-	public ManipulateController manipulateController;
+	public static ManipulateController manipulateController;
 	public float rotateSpeed = 10f;
 
 	public void OnEnable(){
@@ -17,11 +17,10 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 		transform.Rotate(rotateSpeed/2f * Time.deltaTime, rotateSpeed * Time.deltaTime, 0);
 	}
 
+	//passes this gameobj to the manipulatecontroller script in the manipulate panel 
+	//to be referenced when rotated/scaled.
 	public virtual void OnPointerClick(PointerEventData eventData){
 		Debug.Log (this.gameObject.ToString() + "  was clicked");
-
-		//passes this gameobj to the manipulatecontroller script in the manipulate panel 
-		//to be referenced when rotated/scaled.
 		manipulateController.setInteractiveItem (this.gameObject);
 	}
 }
