@@ -18,11 +18,19 @@ public class ManipulateController : MonoBehaviour {
     public void setInteractiveItem(GameObject gameObj){
 		currentGameObj = gameObj;
 		Debug.Log ("Now interacting with " + gameObj);
-        
-        currentGameObj.GetComponent<MeshRenderer>().material.shader = Outline;
 
-        //check whether if the current model is the same as the last model
-        //cube.GetComponent<Renderer>().material.shader = Standard;
+		//get list of renderers
+		MeshRenderer[] currentMeshRenderList = currentGameObj.GetComponentsInChildren<MeshRenderer>();
+		Renderer[] currentRenderList = currentGameObj.GetComponentsInChildren<Renderer>();
+
+		foreach (MeshRenderer mr in currentMeshRenderList) {
+			mr.material.shader = Outline;
+		}
+		foreach (Renderer r in currentRenderList) {
+			r.material.shader = Outline;
+		}
+			
+
         if (currentGameObj != lastGameObj)
         {
             //Deactivate the last object if it's not the same
@@ -32,11 +40,16 @@ public class ManipulateController : MonoBehaviour {
         else
         {
             //Deactivate the current object if it's the same
-            currentGameObj.GetComponent<MeshRenderer>().material.shader = Standard;
+			foreach (MeshRenderer mr in currentMeshRenderList) {
+				mr.material.shader = Standard;
+			}
+			foreach (Renderer r in currentRenderList) {
+				r.material.shader = Standard;
+			}
+
             lastGameObj = null;
             currentGameObj = null;
         }
-
         VRInteractable currentObjectInteractable = gameObj.GetComponent<VRInteractable>();
         rotateSlider.value = currentObjectInteractable.rotateSpeed;
     }

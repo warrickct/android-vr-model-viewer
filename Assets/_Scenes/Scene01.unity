@@ -596,7 +596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d285b0b1be45052488b1d7dd74238865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manipulateController: {fileID: 0}
   rotateSpeed: 0
 --- !u!23 &166998799
 MeshRenderer:
@@ -836,7 +835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d285b0b1be45052488b1d7dd74238865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manipulateController: {fileID: 0}
   rotateSpeed: 10
 --- !u!1 &205234909
 GameObject:
@@ -890,10 +888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b842e8d7bb5b2c04bb5dced632b93c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cube: {fileID: 281257746}
   Outline: {fileID: 4800000, guid: 40770f2f15e8cdf4caa40b50d89a860e, type: 3}
   Standard: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  render_material: {fileID: 2100000, guid: d28cdf94aeb96d44cb58cd69a8977068, type: 2}
   rotateSlider: {fileID: 1310464783}
 --- !u!114 &205234912
 MonoBehaviour:
@@ -1699,7 +1695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d285b0b1be45052488b1d7dd74238865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manipulateController: {fileID: 0}
   rotateSpeed: 10
 --- !u!114 &504860841
 MonoBehaviour:
