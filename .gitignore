@@ -10,7 +10,7 @@ obj/
 *.sln
 *.suo
 *.userprefs
-.vs/
+.vs
 
 # OS generated
 .DS_Store
