@@ -19,7 +19,7 @@ public class ManipulateController : MonoBehaviour {
 		currentGameObj = gameObj;
 		Debug.Log ("Now interacting with " + gameObj);
         
-        currentGameObj.GetComponent<Renderer>().material.shader = Outline;
+        currentGameObj.GetComponent<MeshRenderer>().material.shader = Outline;
 
         //check whether if the current model is the same as the last model
         //cube.GetComponent<Renderer>().material.shader = Standard;
@@ -32,7 +32,7 @@ public class ManipulateController : MonoBehaviour {
         else
         {
             //Deactivate the current object if it's the same
-            currentGameObj.GetComponent<Renderer>().material.shader = Standard;
+            currentGameObj.GetComponent<MeshRenderer>().material.shader = Standard;
             lastGameObj = null;
             currentGameObj = null;
         }
