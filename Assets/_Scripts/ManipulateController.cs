@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ManipulateController : MonoBehaviour {
 
     GameObject currentGameObj;
-    GameObject lastGameObj;
+	GameObject lastGameObj = null;
     public Shader Outline;
     public Shader Standard;
     public Slider rotateSlider;
@@ -19,52 +19,48 @@ public class ManipulateController : MonoBehaviour {
 		currentGameObj = gameObj;
 		Debug.Log ("Now interacting with " + gameObj);
 
-		//get list of renderers
-		MeshRenderer[] currentMeshRenderList = currentGameObj.GetComponentsInChildren<MeshRenderer>();
-		Renderer[] currentRenderList = currentGameObj.GetComponentsInChildren<Renderer>();
+		//if same as lastobj then deactivate current and set last to null
+		if (currentGameObj == lastGameObj) {
+			DeactivateObject (currentGameObj);
+			lastGameObj = null;
+		} else {
+			ActivateObject (currentGameObj);
+			DeactivateObject (lastGameObj);
+			lastGameObj = currentGameObj;
+		}
+		//if different
+			//activate current
+			//deactivate last
+			//make last = current
 
+        VRInteractable currentObjectInteractable = gameObj.GetComponent<VRInteractable>();
+        rotateSlider.value = currentObjectInteractable.rotateSpeed;
+    }
+
+	private void ActivateObject(GameObject go){
+		MeshRenderer[] currentMeshRenderList = go.GetComponentsInChildren<MeshRenderer>();
+		Renderer[] currentRenderList = go.GetComponentsInChildren<Renderer>();
 		foreach (MeshRenderer mr in currentMeshRenderList) {
 			mr.material.shader = Outline;
 		}
 		foreach (Renderer r in currentRenderList) {
 			r.material.shader = Outline;
 		}
-			
+	}
 
-        if (currentGameObj != lastGameObj)
-        {
-            //Deactivate the last object if it's not the same
-            DeactivateLastObject();
-            lastGameObj = currentGameObj;
-        }
-        else
-        {
-            //Deactivate the current object if it's the same
-			foreach (MeshRenderer mr in currentMeshRenderList) {
-				mr.material.shader = Standard;
-			}
-			foreach (Renderer r in currentRenderList) {
-				r.material.shader = Standard;
-			}
-
-            lastGameObj = null;
-            currentGameObj = null;
-        }
-        VRInteractable currentObjectInteractable = gameObj.GetComponent<VRInteractable>();
-        rotateSlider.value = currentObjectInteractable.rotateSpeed;
-    }
-
-    private void DeactivateLastObject()
-    {
-        //if there was no last game object
-        if (lastGameObj == null)
-        {
-            return;
-        }
-        //if there was a last game object
-        lastGameObj.GetComponent<Renderer>().material.shader = Standard;
-        lastGameObj = null;
-    }
+	private void DeactivateObject(GameObject go){
+		if (go == null) {
+			return;
+		}
+		MeshRenderer[] currentMeshRenderList = go.GetComponentsInChildren<MeshRenderer>();
+		Renderer[] currentRenderList = go.GetComponentsInChildren<Renderer>();
+		foreach (MeshRenderer mr in currentMeshRenderList) {
+			mr.material.shader = Standard;
+		}
+		foreach (Renderer r in currentRenderList) {
+			r.material.shader = Standard;
+		}
+	}
 
     public void ScaleUp (int newScale)
 	{
