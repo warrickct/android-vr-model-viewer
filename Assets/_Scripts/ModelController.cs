@@ -26,4 +26,12 @@ public class ModelController : MonoBehaviour {
 	void SetSelectedObject(GameObject go){
 		Debug.Log (go + " is the selected game object");
 	}
+
+	public void ClearAllModels() {
+		GameObject[] modelsList = GameObject.FindGameObjectsWithTag ("Model");
+
+		foreach (GameObject model in modelsList) {
+			Destroy (model);
+		}
+	}
 }
