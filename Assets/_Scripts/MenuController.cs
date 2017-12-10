@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,8 +21,8 @@ public class MenuController : MonoBehaviour {
 	}
 
     public void DisplayMenu(GameObject menuToDisplay)
-    {   
-        foreach(GameObject menuPanel in menuPanelList)
+    {
+        foreach (GameObject menuPanel in menuPanelList)
         {
             if (menuPanel == menuToDisplay)
             {
@@ -32,6 +32,16 @@ public class MenuController : MonoBehaviour {
             {
                 menuPanel.SetActive(false);
             }
+        }
+    }
+
+
+    //because display menu doesn't allow null value.
+    public void CloseMenus()
+    {
+        foreach (GameObject menuPanel in menuPanelList)
+        {
+            menuPanel.SetActive(false);
         }
     }
 }
