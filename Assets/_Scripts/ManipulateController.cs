@@ -10,12 +10,11 @@ public class ManipulateController : MonoBehaviour {
     public Shader Outline;
     public Shader Standard;
     public Slider rotateSlider;
+    public char currentAxis;
 
-    private void Start()
-    {   
-    }
+    VRInteractable currentObjectInteractable;
 
-    public void setInteractiveItem(GameObject gameObj){
+    public void SetInteractiveItem(GameObject gameObj){
 		currentGameObj = gameObj;
 		Debug.Log ("Now interacting with " + gameObj);
 
@@ -28,13 +27,24 @@ public class ManipulateController : MonoBehaviour {
 			DeactivateObject (lastGameObj);
 			lastGameObj = currentGameObj;
 		}
-		//if different
-			//activate current
-			//deactivate last
-			//make last = current
+        currentObjectInteractable = currentGameObj.GetComponent<VRInteractable>();
+        UpdateSlider();
+    }
 
-        VRInteractable currentObjectInteractable = gameObj.GetComponent<VRInteractable>();
-        rotateSlider.value = currentObjectInteractable.rotateSpeed;
+    public void UpdateSlider()
+    {
+        switch (currentAxis)
+        {
+            case 'x':
+                rotateSlider.value = currentObjectInteractable.xRotVelocity;
+                break;
+            case 'y':
+                rotateSlider.value = currentObjectInteractable.yRotVelocity;
+                break;
+            case 'z':
+                rotateSlider.value = currentObjectInteractable.zRotVelocity;
+                break;
+        }
     }
 
 	private void ActivateObject(GameObject go){
@@ -62,6 +72,13 @@ public class ManipulateController : MonoBehaviour {
 		}
 	}
 
+    public void ChangeAxis(string axis)
+    {
+        currentAxis = System.Convert.ToChar(axis);
+        UpdateSlider();
+        Debug.Log("using " + currentAxis + " axis");
+    }
+
     public void ScaleUp (int newScale)
 	{
 		float newScaleValue = currentGameObj.transform.localScale.x * newScale;
@@ -70,12 +87,18 @@ public class ManipulateController : MonoBehaviour {
 
 	public void ScaleDown (int newScale)
 	{
+        
 		float newScaleValue = currentGameObj.transform.localScale.x / newScale;
 		currentGameObj.transform.localScale = new Vector3(newScaleValue, newScaleValue, newScaleValue);
 	}
 
-	public void UpdateSpeed(float newSpeed){
-        VRInteractable currentObjectInteractable = currentGameObj.GetComponent<VRInteractable>();
-        currentObjectInteractable.rotateSpeed = newSpeed;
+	public void UpdateRotation(float newSpeed){
+        currentObjectInteractable = currentGameObj.GetComponent<VRInteractable>();
+        if (currentObjectInteractable == null)
+        {
+            Debug.Log("Debug: no object selected");
+            return;
+        }
+        currentObjectInteractable.ChangeRotation(newSpeed, currentAxis);
     }
 }

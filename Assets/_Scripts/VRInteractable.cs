@@ -7,9 +7,12 @@ using UnityEngine.EventSystems;
 public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
 	public static ManipulateController manipulateController;
-	public float rotateSpeed = 10f;
 
-	public void Start(){
+    public float xRotVelocity=5;
+    public float yRotVelocity=5;
+    public float zRotVelocity=5;
+
+    public void Start(){
 		this.gameObject.tag = "Model";
 	}
 
@@ -24,11 +27,31 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
     }
 
 	public void Update(){
-		transform.Rotate(rotateSpeed/2f * Time.deltaTime, rotateSpeed * Time.deltaTime, 0);
+		transform.Rotate(xRotVelocity * Time.deltaTime, yRotVelocity * Time.deltaTime, zRotVelocity * Time.deltaTime);
 	}
 
 	//passes this gameobj ref to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
-		manipulateController.setInteractiveItem (this.gameObject);
+		manipulateController.SetInteractiveItem (this.gameObject);
 	}
+
+    public void ChangeRotation(float newSpeed, char axis)
+    {
+        switch (axis)
+        {
+            case 'x':
+                xRotVelocity = newSpeed;
+                break;
+            case 'y':
+                yRotVelocity = newSpeed;
+                break;
+            case 'z':
+                zRotVelocity = newSpeed;
+                break;
+            default:
+                xRotVelocity = newSpeed;
+                Debug.Log("no axis input. Defaulting to x axis");
+                break;
+        }
+    }
 }
