@@ -844,7 +844,6 @@ GameObject:
   - component: {fileID: 199420890}
   - component: {fileID: 199420889}
   - component: {fileID: 199420888}
-  - component: {fileID: 199420887}
   - component: {fileID: 199420891}
   m_Layer: 0
   m_Name: VRCube1
@@ -866,19 +865,6 @@ Transform:
   m_Father: {fileID: 2061909513}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &199420887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 199420885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b591c4f593a4d3b468ec7bc9d1c0ec90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube_renderer: {fileID: 199420888}
-  speed: 10
 --- !u!23 &199420888
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1838,7 +1824,6 @@ GameObject:
   - component: {fileID: 504860844}
   - component: {fileID: 504860843}
   - component: {fileID: 504860842}
-  - component: {fileID: 504860841}
   - component: {fileID: 504860840}
   m_Layer: 0
   m_Name: VRCube2
@@ -1872,19 +1857,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 10
---- !u!114 &504860841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 504860838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b591c4f593a4d3b468ec7bc9d1c0ec90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube_renderer: {fileID: 504860842}
-  speed: 10
 --- !u!23 &504860842
 MeshRenderer:
   m_ObjectHideFlags: 0

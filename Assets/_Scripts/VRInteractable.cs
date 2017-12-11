@@ -29,7 +29,6 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
 	//passes this gameobj ref to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
-		Debug.Log (this.gameObject.ToString() + "  was clicked");
 		manipulateController.setInteractiveItem (this.gameObject);
 	}
 }

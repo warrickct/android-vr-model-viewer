@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//test trying to add button at runtime
-using UnityEngine.UI;
-
 public class ModelController : MonoBehaviour {
 
     public void LoadModel(string modelName)
@@ -23,10 +20,6 @@ public class ModelController : MonoBehaviour {
 		MeshCollider modelMeshCollider = instancedModel.AddComponent<MeshCollider> ();
 		modelMeshCollider.sharedMesh = modelMesh;
     }
-
-	void SetSelectedObject(GameObject go){
-		Debug.Log (go + " is the selected game object");
-	}
 
 	public void ClearAllModels() {
 		GameObject[] modelsList = GameObject.FindGameObjectsWithTag ("Model");
