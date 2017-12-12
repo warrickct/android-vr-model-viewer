@@ -13,15 +13,21 @@ public class ModelController : MonoBehaviour {
         instancedModel.transform.localPosition = Vector3.zero;
         instancedModel.transform.localRotation = Quaternion.identity;
 
+        //TODO: for testing collider interaction isn't because we're inside collider
+
+        instancedModel.AddComponent<VRInteractable>();
+
         //Generate mesh collider from Mesh renderer.
         //TODO: Make child objects combine their meshes into one mesh.
-        instancedModel.AddComponent<VRInteractable>();
+
+        /*
 		Mesh modelMesh = instancedModel.GetComponentInChildren<MeshFilter> ().mesh;
 		MeshCollider modelMeshCollider = instancedModel.AddComponent<MeshCollider> ();
 		modelMeshCollider.sharedMesh = modelMesh;
+        */
     }
 
-	public void ClearAllModels() {
+    public void ClearAllModels() {
 		GameObject[] modelsList = GameObject.FindGameObjectsWithTag ("Model");
 		foreach (GameObject model in modelsList) {
 			Destroy (model);
