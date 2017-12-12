@@ -187,7 +187,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 28865492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 980318225}
+        m_MethodName: InstantiateBatch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &28865492
@@ -2552,6 +2563,17 @@ MonoBehaviour:
           m_StringArgument: 149229646062
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 980318225}
+        m_MethodName: AddToBatch
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 149229646062
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &745657837
@@ -2935,6 +2957,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980318225}
         m_MethodName: LoadModel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: cicada-pomponia
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 980318225}
+        m_MethodName: AddToBatch
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3355,7 +3388,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 1
   m_CellSize: {x: 100, y: 25}
-  m_Spacing: {x: 0, y: 60}
+  m_Spacing: {x: 150, y: 60}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &980318223
@@ -3480,6 +3513,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 980318225}
         m_MethodName: LoadModel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CV_DLC8_Batman_Beyond
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 980318225}
+        m_MethodName: AddToBatch
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

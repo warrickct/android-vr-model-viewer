@@ -8,7 +8,6 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
     //TODO: panel ref wont be set if no obj with VRInteractable when scene starts.
 	public static ManipulateController manipulateController;
-
     public float xRotVelocity=5;
     public float yRotVelocity=5;
     public float zRotVelocity=5;
@@ -72,10 +71,11 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
         }
         transform.gameObject.AddComponent<MeshFilter>();
         transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+		Mesh combinedMesh = transform.GetComponent<MeshFilter> ().mesh;
         transform.gameObject.SetActive(true);
-
-        //nonexample code to add collider
-        MeshCollider modelMeshCollder = transform.gameObject.AddComponent<MeshCollider>();
-        modelMeshCollder.convex = true;
+        MeshCollider modelMeshCollider = transform.gameObject.AddComponent<MeshCollider>();
+		if (combinedMesh.triangles.Length < 255) {
+			modelMeshCollider.convex = true;
+		}
     }
 }
