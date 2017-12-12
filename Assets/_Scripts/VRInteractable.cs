@@ -75,6 +75,7 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
         transform.gameObject.SetActive(true);
 
         //nonexample code to add collider
-        transform.gameObject.AddComponent<MeshCollider>();
+        MeshCollider modelMeshCollder = transform.gameObject.AddComponent<MeshCollider>();
+        modelMeshCollder.convex = true;
     }
 }
