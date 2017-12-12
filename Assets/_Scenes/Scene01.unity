@@ -6549,7 +6549,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Load Batman
+  m_Text: Load stop
 --- !u!222 &2004090889
 CanvasRenderer:
   m_ObjectHideFlags: 0

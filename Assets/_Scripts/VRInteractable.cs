@@ -15,6 +15,7 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
     public void Start(){
 		this.gameObject.tag = "Model";
+        CreateMeshFilter();
 	}
 
     public void OnEnable(){
@@ -51,5 +52,30 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
                 Debug.Log("no axis input. Defaulting to x axis");
                 break;
         }
+    }
+
+    public void CreateMeshFilter()
+    {
+        if (transform.GetComponent<Collider>() != null)
+        {
+            return;
+        }
+        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+        int i = 0;
+        while (i < meshFilters.Length)
+        {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            //meshFilters[i].gameObject.SetActive(false);
+            i++;
+        }
+        transform.gameObject.AddComponent<MeshFilter>();
+        transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+        transform.gameObject.SetActive(true);
+
+        //nonexample code to add collider
+        MeshCollider modelMeshCollder = transform.gameObject.AddComponent<MeshCollider>();
+        modelMeshCollder.convex = true;
     }
 }
