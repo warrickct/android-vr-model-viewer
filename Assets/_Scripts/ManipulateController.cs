@@ -10,7 +10,9 @@ public class ManipulateController : MonoBehaviour {
     public Shader Outline;
     public Shader Standard;
     public Slider rotateSlider;
-    public char currentAxis;
+    private char currentAxis;
+
+    [SerializeField] Text rotateText;
 
     VRInteractable currentObjectInteractable;
 
@@ -76,6 +78,7 @@ public class ManipulateController : MonoBehaviour {
     {
         currentAxis = System.Convert.ToChar(axis);
         UpdateSlider();
+        rotateText.text = "Rotating: " + currentAxis; 
         Debug.Log("using " + currentAxis + " axis");
     }
 
