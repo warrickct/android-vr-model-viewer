@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
+    //TODO: panel ref wont be set if no obj with VRInteractable when scene starts.
 	public static ManipulateController manipulateController;
 
     public float xRotVelocity=5;
@@ -17,9 +18,6 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 	}
 
     public void OnEnable(){
-        //TODO:gives null reference error. If there's no interactable in the scene this will cause problems when loading a model
-        //needs to be an obj with a vr interactable at the start or the ref to manipulate panel will never be created.
-        //Possible solution: Make a emptygame obj with the interactable script that setactive false after references set up like the menu.
         if (manipulateController == null)
         {
             manipulateController = GameObject.Find("ManipulatePanel").GetComponent<ManipulateController>();
