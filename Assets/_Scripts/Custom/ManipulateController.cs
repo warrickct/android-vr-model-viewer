@@ -5,34 +5,76 @@ using UnityEngine.UI;
 
 public class ManipulateController : MonoBehaviour {
 
-    GameObject currentGameObj;
-	GameObject lastGameObj = null;
     public Shader Outline;
     public Shader Standard;
     public Slider rotateSlider;
+    public Transform head;
+
+    private GameObject currentGameObj;
+    private GameObject lastGameObj = null;
     private char currentAxis;
 
     [SerializeField] Text rotateText;
 
     VRInteractable currentObjectInteractable;
+    private GameObject teleportItem;
+    private float teleportDistance;
+    
+
+    private void Start()
+    {
+        teleportDistance = 5f;
+    }
+
+    private void Update()
+    {
+        
+    }
 
     public void SetInteractiveItem(GameObject gameObj, int tap){
 		currentGameObj = gameObj;
-		Debug.Log ("Now interacting with " + gameObj);
-
+        
+        //ADDED: if same as lastobj set current object null
 		//if same as lastobj then deactivate current and set last to null
 		if (currentGameObj == lastGameObj) {
             if (tap != 1)
                 return;
 			DeactivateObject (currentGameObj);
 			lastGameObj = null;
+            currentGameObj = null;
 		} else {
 			ActivateObject (currentGameObj);
 			DeactivateObject (lastGameObj);
 			lastGameObj = currentGameObj;
 		}
-        currentObjectInteractable = currentGameObj.GetComponent<VRInteractable>();
-        UpdateSlider();
+        //ADDED: if there is a current object, then update the slider
+        if (currentGameObj != null)
+        {
+            currentObjectInteractable = currentGameObj.GetComponent<VRInteractable>();
+            UpdateSlider();
+        }
+        Debug.Log("Now interacting with " + currentGameObj);
+    }
+
+    //ADDED: send the currentGameObj to VRInteratable script
+    public GameObject WhatISCurrentItem()
+    {
+        if (currentGameObj != null) return currentGameObj;
+
+        return null;
+    }
+
+    //Single click
+    public void SingleClick()
+    {
+        teleportItem = currentGameObj;
+    }
+
+
+    //Double click
+    public void DoubleClick()
+    {
+
     }
 
     public void UpdateSlider()

@@ -10,8 +10,12 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
     public float xRotVelocity=5;
     public float yRotVelocity=5;
     public float zRotVelocity=5;
+    public Transform head;
+
+    private GameObject teleportItem;
 
     int tap;
+    private float teleportDistance = 5f;
 
     public void Start(){
 		this.gameObject.tag = "Model";
@@ -23,19 +27,46 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
         {
             manipulateController = GameObject.Find("ManipulatePanel").GetComponent<ManipulateController>();
         }
+
+        if (head == null)
+        {
+            head = GameObject.Find("CenterEyeAnchor").GetComponent<Transform>();
+        }
     }
 
 	public void Update(){
 		transform.Rotate(xRotVelocity * Time.deltaTime, yRotVelocity * Time.deltaTime, zRotVelocity * Time.deltaTime);
-	}
+
+        if (OVRInput.GetDown(OVRInput.Button.DpadRight) && teleportDistance < 20f)
+        {
+            teleportDistance += .5f;
+        }
+        else if (OVRInput.GetDown(OVRInput.Button.DpadLeft) && teleportDistance > .5f)
+        {
+            teleportDistance -= .5f;
+        }
+
+        //if there is one click object to teleport
+        if (teleportItem != null)
+        {
+            teleportItem.transform.position = head.position + teleportDistance * head.forward;
+        }
+    }
+
+    
 
 	//passes this gameobj to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
         tap = eventData.clickCount;
         manipulateController.SetInteractiveItem(this.gameObject, tap);
+        //ADDED: get teleportItem from ManipulateController.cs
+        teleportItem = manipulateController.WhatISCurrentItem();
+        Debug.Log("Current item: " +teleportItem);
 
         if (tap == 1)
         {
+            Debug.Log("Single Click!");
+            manipulateController.SingleClick();
             //manipulateController.SetInteractiveItem(this.gameObject);
         }
         else if (tap == 2)
