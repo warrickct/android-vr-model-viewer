@@ -16,12 +16,14 @@ public class ManipulateController : MonoBehaviour {
 
     VRInteractable currentObjectInteractable;
 
-    public void SetInteractiveItem(GameObject gameObj){
+    public void SetInteractiveItem(GameObject gameObj, int tap){
 		currentGameObj = gameObj;
 		Debug.Log ("Now interacting with " + gameObj);
 
 		//if same as lastobj then deactivate current and set last to null
 		if (currentGameObj == lastGameObj) {
+            if (tap != 1)
+                return;
 			DeactivateObject (currentGameObj);
 			lastGameObj = null;
 		} else {

@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.EventSystems;
 
-public class VRInteractable : MonoBehaviour, IPointerClickHandler, IPointerUpHandler {
+public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
     //TODO: panel ref wont be set if no obj with VRInteractable when scene starts.
 	public static ManipulateController manipulateController;
@@ -13,8 +12,6 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler, IPointerUpHan
     public float zRotVelocity=5;
 
     int tap;
-    float interval = 5f;
-    bool readyForDoubleTap;
 
     public void Start(){
 		this.gameObject.tag = "Model";
@@ -32,36 +29,19 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler, IPointerUpHan
 		transform.Rotate(xRotVelocity * Time.deltaTime, yRotVelocity * Time.deltaTime, zRotVelocity * Time.deltaTime);
 	}
 
-	//passes this gameobj ref to manipulate controller.
+	//passes this gameobj to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
-        //manipulateController.SetInteractiveItem (this.gameObject);
-
-        tap++;
+        tap = eventData.clickCount;
+        manipulateController.SetInteractiveItem(this.gameObject, tap);
 
         if (tap == 1)
         {
-            manipulateController.SetInteractiveItem(this.gameObject);
-            StartCoroutine(DoubleTapInterval());
+            //manipulateController.SetInteractiveItem(this.gameObject);
         }
-
-        else if (tap > 1 && readyForDoubleTap)
+        else if (tap == 2)
         {
-            Destroy(this.gameObject);
-
-            tap = 0;
-            readyForDoubleTap = false;
+            //Destroy(this.gameObject);
         }
-    }
-
-    IEnumerator DoubleTapInterval()
-    {
-        yield return new WaitForSeconds(interval);
-        readyForDoubleTap = true;
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
-        Debug.Log("pointer released");
     }
 
     public void ChangeRotation(float newSpeed, char axis)
