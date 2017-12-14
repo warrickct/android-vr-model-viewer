@@ -12,6 +12,10 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler, IPointerUpHan
     public float yRotVelocity=5;
     public float zRotVelocity=5;
 
+    int tap;
+    float interval = 5f;
+    bool readyForDoubleTap;
+
     public void Start(){
 		this.gameObject.tag = "Model";
         CreateMeshFilter();
@@ -30,8 +34,30 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler, IPointerUpHan
 
 	//passes this gameobj ref to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
-		manipulateController.SetInteractiveItem (this.gameObject);
-	}
+        //manipulateController.SetInteractiveItem (this.gameObject);
+
+        tap++;
+
+        if (tap == 1)
+        {
+            manipulateController.SetInteractiveItem(this.gameObject);
+            StartCoroutine(DoubleTapInterval());
+        }
+
+        else if (tap > 1 && readyForDoubleTap)
+        {
+            Destroy(this.gameObject);
+
+            tap = 0;
+            readyForDoubleTap = false;
+        }
+    }
+
+    IEnumerator DoubleTapInterval()
+    {
+        yield return new WaitForSeconds(interval);
+        readyForDoubleTap = true;
+    }
 
     public virtual void OnPointerUp(PointerEventData eventData)
     {
