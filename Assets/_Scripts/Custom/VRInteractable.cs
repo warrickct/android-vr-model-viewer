@@ -13,6 +13,7 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
     public Transform head;
 
     private GameObject teleportItem;
+    private GameObject currentItem;
 
     int tap;
     private float teleportDistance = 5f;
@@ -58,20 +59,24 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 	//passes this gameobj to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
         tap = eventData.clickCount;
+        Debug.Log("Tap count: " + tap);
         manipulateController.SetInteractiveItem(this.gameObject, tap);
         //ADDED: get teleportItem from ManipulateController.cs
-        teleportItem = manipulateController.WhatISCurrentItem();
-        Debug.Log("Current item: " +teleportItem);
 
         if (tap == 1)
         {
-            Debug.Log("Single Click!");
-            manipulateController.SingleClick();
-            //manipulateController.SetInteractiveItem(this.gameObject);
+            currentItem = manipulateController.WhatISCurrentItem();
+            Debug.Log("Single Click: " + currentItem);
+
+            if (currentItem == null)
+            {
+                teleportItem = null;
+            }
         }
         else if (tap == 2)
         {
-            //Destroy(this.gameObject);
+            teleportItem = manipulateController.WhatISCurrentItem();
+            Debug.Log("Double click: " + teleportItem);
         }
     }
 
