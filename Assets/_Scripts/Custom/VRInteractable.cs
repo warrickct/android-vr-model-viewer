@@ -13,10 +13,15 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 
     int tap;
 
+    Collider modelCollider;
+
     public void Start(){
 		this.gameObject.tag = "Model";
         CreateMeshFilter();
-	}
+
+        //trying to find mesh center.
+        modelCollider = this.gameObject.GetComponent<Collider>();
+    }
 
     public void OnEnable(){
         if (manipulateController == null)
@@ -33,15 +38,6 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 	public virtual void OnPointerClick(PointerEventData eventData){
         tap = eventData.clickCount;
         manipulateController.SetInteractiveItem(this.gameObject, tap);
-
-        if (tap == 1)
-        {
-            //manipulateController.SetInteractiveItem(this.gameObject);
-        }
-        else if (tap == 2)
-        {
-            //Destroy(this.gameObject);
-        }
     }
 
     public void ChangeRotation(float newSpeed, char axis)
@@ -86,6 +82,7 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
         MeshCollider modelMeshCollider = transform.gameObject.AddComponent<MeshCollider>();
 		if (combinedMesh.triangles.Length < 255) {
 			modelMeshCollider.convex = true;
+            modelMeshCollider.isTrigger = true;
 		}
     }
 }
