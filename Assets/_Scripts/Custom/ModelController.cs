@@ -18,10 +18,11 @@ public class ModelController : MonoBehaviour {
         instancedModel.transform.localPosition = Vector3.zero;
         instancedModel.transform.localRotation = Quaternion.identity;
         instancedModel.AddComponent<VRInteractable>();
+        instancedModel.AddComponent<Teleportable>();
         NormalisePosition(instancedModel);
     }
 
-    public void NormaliseScale(GameObject object go)
+    public void NormaliseScale(GameObject go)
     {
         scaleCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         scaleCube.AddComponent<Rigidbody>();

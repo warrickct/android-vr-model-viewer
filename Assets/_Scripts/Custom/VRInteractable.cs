@@ -37,7 +37,14 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 	//passes this gameobj to manipulate controller.
 	public virtual void OnPointerClick(PointerEventData eventData){
         tap = eventData.clickCount;
-        manipulateController.SetInteractiveItem(this.gameObject, tap);
+        if (tap == 1)
+        {
+            manipulateController.SetInteractiveItem(this.gameObject);
+        }
+        if (tap == 2)
+        {
+            Debug.Log("Double clicked");
+        }
     }
 
     public void ChangeRotation(float newSpeed, char axis)
