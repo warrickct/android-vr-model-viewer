@@ -8,10 +8,13 @@ public class Teleportable : MonoBehaviour, IPointerClickHandler {
     static GameObject player;
     int tap;
 
+    public static OVRPhysicsRaycaster physicsCaster;
+
     //sets reference to player object.
     private void Awake()
     {
         player = GameObject.Find("Player");
+        physicsCaster = GameObject.Find("Player").GetComponentInChildren<OVRPhysicsRaycaster>();
     }
 
 
@@ -22,7 +25,10 @@ public class Teleportable : MonoBehaviour, IPointerClickHandler {
         if (tap == 2)
         {
             Debug.Log("teleport function call");
-            player.transform.position = eventData.pointerPressRaycast.worldPosition;
+            if (eventData != null)
+                player.transform.position = eventData.pointerPressRaycast.worldPosition;
+            else
+                player.transform.position += Vector3.forward * 10f;
         }
     }
 }

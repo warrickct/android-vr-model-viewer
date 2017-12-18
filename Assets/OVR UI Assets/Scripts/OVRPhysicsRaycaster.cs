@@ -103,9 +103,9 @@ namespace UnityEngine.EventSystems
             if (hits.Length > 1)
                 System.Array.Sort(hits, (r1, r2) => r1.distance.CompareTo(r2.distance));
 
+            //warrick: Added this so physics raycaster returning results always
             if (hits.Length != 0)
             {
-                Debug.Log("hi");
                 for (int b = 0, bmax = hits.Length; b < bmax; ++b)
                 {
                     var result = new RaycastResult
@@ -118,6 +118,16 @@ namespace UnityEngine.EventSystems
                         worldNormal = hits[0].normal,
                     };
                     resultAppendList.Add(result);
+                }
+            }
+
+            //Warrick: Adding this to clamp a distance value for teleporting
+            //TODO: only camera moving at the moment.
+            if (hits.Length == 0)
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    transform.localPosition += Vector3.forward * 5f;
                 }
             }
         }

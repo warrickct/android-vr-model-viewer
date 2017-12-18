@@ -26,6 +26,8 @@ namespace UnityEngine.EventSystems
 {
     public class OVRInputModule : PointerInputModule
     {
+        public Transform TestRayOrigin;
+
         [Tooltip("Object which points with Z axis. E.g. CentreEyeAnchor from OVRCameraRig")]
         public Transform rayTransform;
 
@@ -592,10 +594,12 @@ namespace UnityEngine.EventSystems
         {
             // Get the OVRRayPointerEventData reference
             OVRRayPointerEventData leftData;
+
             GetPointerData(kMouseLeftId, out leftData, true );
             leftData.Reset();
             
             //Now set the world space ray. This ray is what the user uses to point at UI elements
+            //warrick: Alter line below to change what element is pointed at.
             leftData.worldSpaceRay = new Ray(rayTransform.position, rayTransform.forward);
             leftData.scrollDelta = GetExtraScrollDelta();
 
