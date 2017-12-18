@@ -105,6 +105,7 @@ namespace UnityEngine.EventSystems
 
             if (hits.Length != 0)
             {
+                Debug.Log("hi");
                 for (int b = 0, bmax = hits.Length; b < bmax; ++b)
                 {
                     var result = new RaycastResult

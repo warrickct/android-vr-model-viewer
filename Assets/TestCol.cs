@@ -21,6 +21,5 @@ public class TestCol : MonoBehaviour {
     void OnCollisionExit(Collision col)
     {
         this.gameObject.GetComponent<Renderer>().material.color = Color.green;
-
     }
 }
