@@ -181,7 +181,7 @@ namespace UnityEngine.EventSystems
         /// <returns></returns>
         public Vector2 GetScreenPos(Vector3 worldPosition)
         {
-            // In future versions of Uinty RaycastResult will contain screenPosition so this will not be necessary
+            // In future versions of Unity RaycastResult will contain screenPosition so this will not be necessary
             return eventCamera.WorldToScreenPoint(worldPosition);
         }
     }
