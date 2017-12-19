@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class VRInteractable : MonoBehaviour, IPointerClickHandler {
+public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
     //TODO: panel ref wont be set if no obj with VRInteractable when scene starts.
 	public static ManipulateController manipulateController;
@@ -12,6 +12,8 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
     public float zRotVelocity=5;
 
     int tap;
+    float startTime;
+    float endTime;
 
     Collider modelCollider;
 
@@ -34,16 +36,17 @@ public class VRInteractable : MonoBehaviour, IPointerClickHandler {
 		transform.Rotate(xRotVelocity * Time.deltaTime, yRotVelocity * Time.deltaTime, zRotVelocity * Time.deltaTime);
 	}
 
-	//passes this gameobj to manipulate controller.
-	public virtual void OnPointerClick(PointerEventData eventData){
-        tap = eventData.clickCount;
-        if (tap == 1)
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        startTime = Time.time;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        endTime = Time.time;
+        if ((endTime - startTime) > 0.5f)
         {
             manipulateController.SetInteractiveItem(this.gameObject);
-        }
-        if (tap == 2)
-        {
-            Debug.Log("Double clicked");
         }
     }
 

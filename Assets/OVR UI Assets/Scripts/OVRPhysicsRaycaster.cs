@@ -127,7 +127,7 @@ namespace UnityEngine.EventSystems
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    transform.localPosition += Vector3.forward * 5f;
+                    Debug.Log("Raycast returning nothing");
                 }
             }
         }

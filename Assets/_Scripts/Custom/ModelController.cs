@@ -7,8 +7,6 @@ public class ModelController : MonoBehaviour {
 	List<string> modelList = new List<string>();
 
     GameObject scaleCube;
-    Collider modelCollider;
-
 
     public void LoadModel(string modelName)
     {
@@ -19,7 +17,6 @@ public class ModelController : MonoBehaviour {
         instancedModel.transform.localRotation = Quaternion.identity;
         instancedModel.AddComponent<VRInteractable>();
         instancedModel.AddComponent<Teleportable>();
-        NormalisePosition(instancedModel);
     }
 
     public void NormaliseScale(GameObject go)
@@ -28,13 +25,6 @@ public class ModelController : MonoBehaviour {
         scaleCube.AddComponent<Rigidbody>();
         scaleCube.AddComponent<TestCol>();
         scaleCube.GetComponent<Rigidbody>().isKinematic = false;
-    }
-
-    private void NormalisePosition(GameObject go)
-    {
-        Collider modelCollider = go.GetComponent<Collider>();
-        Vector3 modelCenter = modelCollider.bounds.center;
-        go.transform.localPosition = -modelCollider.bounds.center; 
     }
 
     public void ClearAllModels() {
