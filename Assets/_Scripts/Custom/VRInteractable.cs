@@ -39,6 +39,7 @@ public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData eventData)
     {
         startTime = Time.time;
+        Debug.Log("xxxxxxxxxxxxxxx");
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -47,6 +48,7 @@ public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if ((endTime - startTime) > 0.5f)
         {
             manipulateController.SetInteractiveItem(this.gameObject);
+            Debug.Log("xxxxxxxxxxxxxxx");
         }
     }
 
@@ -70,6 +72,7 @@ public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         }
     }
 
+    //Summary combined the child meshes then generates collider on parent. 
     public void CreateMeshFilter()
     {
         if (transform.GetComponent<Collider>() != null)

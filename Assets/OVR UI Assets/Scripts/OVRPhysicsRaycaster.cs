@@ -29,6 +29,9 @@ namespace UnityEngine.EventSystems
     [RequireComponent(typeof(OVRCameraRig))]
     public class OVRPhysicsRaycaster : BaseRaycaster
     {
+        //warrick: creating public teleportDistance changed from the settingsController
+        public float teleportDistance;
+
         /// <summary>
         /// Const to use for clarity when no event mask is set
         /// </summary>
@@ -129,7 +132,7 @@ namespace UnityEngine.EventSystems
             else
             {
                 if (Input.GetButtonDown("Fire1")) 
-                    transform.root.position = ray.origin + ray.direction;
+                    transform.root.position = ray.origin + ray.direction * teleportDistance;
             }
         }
 
