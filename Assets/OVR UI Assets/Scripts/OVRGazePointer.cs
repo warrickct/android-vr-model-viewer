@@ -189,7 +189,7 @@ public class OVRGazePointer : MonoBehaviour {
     /// <param name="pos"></param>
     public void SetPosition(Vector3 pos)
     {
-        SetPosition(pos, cameraRig.centerEyeAnchor.transform.forward);
+        SetPosition(pos, cameraRig.centerEyeAnchor.transform.forward) ;
     }
 
     

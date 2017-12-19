@@ -33,7 +33,9 @@ namespace UnityEngine.EventSystems
         /// Const to use for clarity when no event mask is set
         /// </summary>
         protected const int kNoEventMaskSet = -1;
-        
+
+        //warrick: testing where ray is with line renderer
+        public LineRenderer debugLine;
 
         /// <summary>
         /// Layer mask used to filter events. Always combined with the camera's culling mask if a camera is used.
@@ -97,6 +99,9 @@ namespace UnityEngine.EventSystems
             var ray = rayPointerEventData.worldSpaceRay;
 
             float dist = eventCamera.farClipPlane - eventCamera.nearClipPlane;
+
+            debugLine.SetPosition(0, ray.origin);
+            debugLine.SetPosition(1, ray.origin + ray.direction * dist);
 
             var hits = Physics.RaycastAll(ray, dist, finalEventMask);
 
