@@ -100,8 +100,9 @@ namespace UnityEngine.EventSystems
 
             float dist = eventCamera.farClipPlane - eventCamera.nearClipPlane;
 
-            debugLine.SetPosition(0, ray.origin);
-            debugLine.SetPosition(1, ray.origin + ray.direction * dist);
+            if (debugLine != null)
+                debugLine.SetPosition(0, ray.origin);
+                debugLine.SetPosition(1, ray.origin + ray.direction * dist);
 
             var hits = Physics.RaycastAll(ray, dist, finalEventMask);
 
@@ -125,15 +126,10 @@ namespace UnityEngine.EventSystems
                     resultAppendList.Add(result);
                 }
             }
-
-            //Warrick: Adding this to clamp a distance value for teleporting
-            //TODO: only camera moving at the moment.
-            if (hits.Length == 0)
+            else
             {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    Debug.Log("Raycast returning nothing");
-                }
+                if (Input.GetButtonDown("Fire1")) 
+                    transform.root.position = ray.origin + ray.direction;
             }
         }
 
