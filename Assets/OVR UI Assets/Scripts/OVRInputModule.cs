@@ -614,7 +614,7 @@ namespace UnityEngine.EventSystems
             //warrick: If there's no game object hit by any ray then teleport.
             if (!raycast.isValid && OVRInput.GetDown(OVRInput.Button.One))
             {
-                Debug.Log("nothing hit. Teleporting");
+                Debug.Log("nothing hit. Teleporting forward");
                 rayTransform.root.position = leftData.worldSpaceRay.origin + leftData.worldSpaceRay.direction * teleportDistance;
             }
             leftData.pointerCurrentRaycast = raycast;
