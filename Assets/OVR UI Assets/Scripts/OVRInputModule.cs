@@ -26,7 +26,9 @@ namespace UnityEngine.EventSystems
 {
     public class OVRInputModule : PointerInputModule
     {
+        //warrick: added testray for debugging, teleport for settings
         public Transform TestRayOrigin;
+        public float teleportDistance = 1;
 
         [Tooltip("Object which points with Z axis. E.g. CentreEyeAnchor from OVRCameraRig")]
         public Transform rayTransform;
@@ -379,7 +381,7 @@ namespace UnityEngine.EventSystems
             // PointerUp notification
             if (data.ReleasedThisFrame())
             {
-                // Debug.Log("Executing pressup on: " + pointer.pointerPress);
+                // Debug.Log("Executing pressup on: " + pointerEvent.pointerPress);
                 ExecuteEvents.Execute(pointerEvent.pointerPress, pointerEvent, ExecuteEvents.pointerUpHandler);
 
                 // Debug.Log("KeyCode: " + pointer.eventData.keyCode);
@@ -609,6 +611,12 @@ namespace UnityEngine.EventSystems
             // Perform raycast to find intersections with world
             eventSystem.RaycastAll(leftData, m_RaycastResultCache);
             var raycast = FindFirstRaycast(m_RaycastResultCache);
+            //warrick: If there's no game object hit by any ray then teleport.
+            if (!raycast.isValid && OVRInput.GetDown(OVRInput.Button.One))
+            {
+                Debug.Log("nothing hit. Teleporting");
+                rayTransform.root.position = leftData.worldSpaceRay.origin + leftData.worldSpaceRay.direction * teleportDistance;
+            }
             leftData.pointerCurrentRaycast = raycast;
             m_RaycastResultCache.Clear();
 
@@ -641,7 +649,6 @@ namespace UnityEngine.EventSystems
                 OVRGazePointer.instance.RequestShow();
                 OVRGazePointer.instance.SetPosition(raycast.worldPosition, raycast.worldNormal);
             }
-
 
 
 

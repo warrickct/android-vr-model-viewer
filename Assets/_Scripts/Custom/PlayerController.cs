@@ -8,7 +8,11 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour {
 
     public float playerSpeed;
-	
+
+    //warrick: test: fire both raycasts, if both return null then teleport.
+    OVRPhysicsRaycaster ovrPhysicsRaycaster;
+    OVRRaycaster ovrRaycaster;
+
 	// Update is called once per frame
 	void Update () {
         var x = Input.GetAxis("Mouse X");
@@ -30,5 +34,10 @@ public class PlayerController : MonoBehaviour {
         {
             transform.position += Vector3.left * playerSpeed;
         }
+    }
+
+    void Teleport()
+    {
+        
     }
 }

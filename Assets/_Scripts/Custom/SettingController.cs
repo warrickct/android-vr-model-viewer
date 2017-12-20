@@ -10,7 +10,7 @@ using UnityEngine.UI;
 //Controls the settings panel changes
 public class SettingController : MonoBehaviour {
 
-    [SerializeField] private OVRPhysicsRaycaster ovrPhysicsRaycaster;
+    [SerializeField] private OVRInputModule ovrInputModule;
     [SerializeField] private Text newTeleportDistanceText;
 
     private string newTeleportDistance;
@@ -19,7 +19,7 @@ public class SettingController : MonoBehaviour {
     //Changes teleportDistance value in OVRPhysicsRaycaster
     public void UpdateLaser()
     {
-        ovrPhysicsRaycaster.teleportDistance = Int32.Parse(newTeleportDistance);
+        ovrInputModule.teleportDistance = Int32.Parse(newTeleportDistance);
     }
 
     //summary

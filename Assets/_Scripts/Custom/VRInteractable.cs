@@ -36,10 +36,10 @@ public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 		transform.Rotate(xRotVelocity * Time.deltaTime, yRotVelocity * Time.deltaTime, zRotVelocity * Time.deltaTime);
 	}
 
+    
     public void OnPointerDown(PointerEventData eventData)
     {
         startTime = Time.time;
-        Debug.Log("xxxxxxxxxxxxxxx");
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -48,7 +48,6 @@ public class VRInteractable : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         if ((endTime - startTime) > 0.5f)
         {
             manipulateController.SetInteractiveItem(this.gameObject);
-            Debug.Log("xxxxxxxxxxxxxxx");
         }
     }
 

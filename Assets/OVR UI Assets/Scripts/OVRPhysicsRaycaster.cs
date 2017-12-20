@@ -29,8 +29,6 @@ namespace UnityEngine.EventSystems
     [RequireComponent(typeof(OVRCameraRig))]
     public class OVRPhysicsRaycaster : BaseRaycaster
     {
-        //warrick: creating public teleportDistance changed from the settingsController
-        public float teleportDistance;
 
         /// <summary>
         /// Const to use for clarity when no event mask is set
@@ -103,16 +101,22 @@ namespace UnityEngine.EventSystems
 
             float dist = eventCamera.farClipPlane - eventCamera.nearClipPlane;
 
+            //warrick: offset the laser so it doesn't render oddly.
+            //setPosition(0, ray.origin) if want to shoot exactly from head.
+            Vector3 laserOrigin = new Vector3(ray.origin.x, ray.origin.y * .7f , ray.origin.z);
+
+
             if (debugLine != null)
-                debugLine.SetPosition(0, ray.origin);
+            {
+                debugLine.SetPosition(0, laserOrigin);
                 debugLine.SetPosition(1, ray.origin + ray.direction * dist);
+            }
 
             var hits = Physics.RaycastAll(ray, dist, finalEventMask);
 
             if (hits.Length > 1)
                 System.Array.Sort(hits, (r1, r2) => r1.distance.CompareTo(r2.distance));
 
-            //warrick: Added this so physics raycaster returning results always
             if (hits.Length != 0)
             {
                 for (int b = 0, bmax = hits.Length; b < bmax; ++b)
@@ -129,11 +133,16 @@ namespace UnityEngine.EventSystems
                     resultAppendList.Add(result);
                 }
             }
+            /*warrick: Added this so physics raycaster returning results always
             else
             {
-                if (Input.GetButtonDown("Fire1")) 
+                if (Input.GetButtonDown("Fire1"))
+                {
                     transform.root.position = ray.origin + ray.direction * teleportDistance;
+                    Debug.Log("test");
+                } 
             }
+            */
         }
 
         /// <summary>
