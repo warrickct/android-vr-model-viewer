@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: a844831b4d4d7c14faa57c6e557fd191
+timeCreated: 1512943894
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Aluminium
+    100002: Black
+    100004: Chrome
+    100006: //RootNode
+    100008: Plate
+    100010: RedButton
+    100012: Screws
+    100014: Yellow
+    400000: Aluminium
+    400002: Black
+    400004: Chrome
+    400006: //RootNode
+    400008: Plate
+    400010: RedButton
+    400012: Screws
+    400014: Yellow
+    2300000: Aluminium
+    2300002: Black
+    2300004: Chrome
+    2300006: Plate
+    2300008: RedButton
+    2300010: Screws
+    2300012: Yellow
+    3300000: Aluminium
+    3300002: Black
+    3300004: Chrome
+    3300006: Plate
+    3300008: RedButton
+    3300010: Screws
+    3300012: Yellow
+    4300000: Aluminium
+    4300002: Black
+    4300004: Chrome
+    4300006: Plate
+    4300008: RedButton
+    4300010: Screws
+    4300012: Yellow
+    6400000: Aluminium
+    6400002: Black
+    6400004: Chrome
+    6400006: Plate
+    6400008: RedButton
+    6400010: Screws
+    6400012: Yellow
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AluminiumMat
+    second: {fileID: 2100000, guid: b00de8a505dc289429b5faf2a3039990, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackMat
+    second: {fileID: 2100000, guid: 0c8142a9c1a5aa14d92276b9c0646986, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ChromeMat
+    second: {fileID: 2100000, guid: 7261ea862f459154f80c78bae8b25fe3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlateMat
+    second: {fileID: 2100000, guid: 629e0f51a0ecc974ea1c6dd70b282649, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedButtonMat
+    second: {fileID: 2100000, guid: 921da4570f7f21b4eb5f4ed30b7bae75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScrewsMat
+    second: {fileID: 2100000, guid: 489b1c8465e8dba41ad607eec41deb3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: YellowMat
+    second: {fileID: 2100000, guid: e207ce930dfc11246bb001a0135399f5, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
