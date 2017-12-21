@@ -35,9 +35,4 @@ public class PlayerController : MonoBehaviour {
             transform.position += Vector3.left * playerSpeed;
         }
     }
-
-    void Teleport()
-    {
-        
-    }
 }
